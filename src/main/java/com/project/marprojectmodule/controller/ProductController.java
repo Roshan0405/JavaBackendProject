@@ -16,13 +16,18 @@ public class ProductController {
 
     //  @RequestMapping(value ="/products", method = RequestMethod.POST)
     @PostMapping("/products")   //    It same work as @RequestMapping
-    public void createProduct(Product product) {
-
+    public Product createProduct(@RequestBody Product product) {
+    Product p = productService.createProduct(product.getId(), product.getTitle(),
+            product.getDescription(), product.getPrice(), product.getImageUrl(), product.getCategory().getTitle());
+    return p;
     }
+
     @GetMapping("/products/{id}")
     public Product getProduct(@PathVariable("id") long id) {
-        productService.getSingleProduct(id);
-        return null;
+        System.out.println("Starting the api call");
+        Product p = productService.getSingleProduct(id);
+        System.out.println("Ending the api call");
+        return p;
     }
 
     public void updateProduct(Product product) {

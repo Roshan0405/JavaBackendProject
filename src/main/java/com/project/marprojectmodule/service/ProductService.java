@@ -10,6 +10,6 @@ public interface ProductService {
 
     List<Product> getAllProducts();
 
-    Product createProduct(Product product);
+    Product createProduct(long id, String title, String description, double price, String image, String category);
 
 }

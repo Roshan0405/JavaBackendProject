@@ -1,12 +1,13 @@
 package com.project.marprojectmodule.service;
 
+import com.project.marprojectmodule.exceptions.ProductNotFoundException;
 import com.project.marprojectmodule.models.Product;
 
 import java.util.List;
 
 public interface ProductService {
 
-    Product getSingleProduct(long id);
+    Product getSingleProduct(long id) throws ProductNotFoundException;
 
     List<Product> getAllProducts();
 

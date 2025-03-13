@@ -1,6 +1,7 @@
 package com.project.marprojectmodule.service;
 
 import com.project.marprojectmodule.dto.FakeStoreProductDto;
+import com.project.marprojectmodule.exceptions.ProductNotFoundException;
 import com.project.marprojectmodule.models.Product;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -17,11 +18,15 @@ public class FakeStoreProductService implements ProductService {
     }
 
     @Override
-    public Product getSingleProduct(long id) {
+    public Product getSingleProduct(long id) throws ProductNotFoundException {
         System.out.println("Inside FakeStoreProductService");
         FakeStoreProductDto fakeStoreProductDto = restTemplate.getForObject("https://fakestoreapi.com/products/" + id, FakeStoreProductDto.class);
 
-        System.out.println(fakeStoreProductDto.toString());
+//        System.out.println(fakeStoreProductDto.toString());
+
+        if(fakeStoreProductDto == null) {
+            throw new ProductNotFoundException("Product not found id=" + id);
+        }
         return fakeStoreProductDto.getProduct();
     }
 

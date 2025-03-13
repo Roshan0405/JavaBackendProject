@@ -5,6 +5,8 @@ import com.project.marprojectmodule.exceptions.ProductNotFoundException;
 import com.project.marprojectmodule.models.Product;
 
 import com.project.marprojectmodule.service.ProductService;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -25,11 +27,14 @@ public class ProductController {
     }
 
     @GetMapping("/products/{id}")
-    public Product getProduct(@PathVariable("id") long id) throws ProductNotFoundException {
+    public ResponseEntity<Product> getProduct(@PathVariable("id") long id) throws ProductNotFoundException {
         System.out.println("Starting the api call");
         Product p = productService.getSingleProduct(id);
         System.out.println("Ending the api call");
-        return p;
+
+        ResponseEntity<Product> response = new ResponseEntity<>(p, HttpStatus.OK);
+
+        return response;
     }
 
     public void updateProduct(Product product) {
@@ -41,10 +46,12 @@ public class ProductController {
     }
 
     @ExceptionHandler(ProductNotFoundException.class)
-    public ErrorDto handleProductNotFoundException(Exception e) {
+    public ResponseEntity<ErrorDto> handleProductNotFoundException(Exception e) {
         ErrorDto errorDto = new ErrorDto();
         errorDto.setMessage(e.getMessage());
 
-        return errorDto;
+        ResponseEntity<ErrorDto> response = new ResponseEntity<>(errorDto, HttpStatus.NOT_FOUND);
+
+        return response;
     }
 }

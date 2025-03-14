@@ -5,6 +5,7 @@ import com.project.marprojectmodule.exceptions.ProductNotFoundException;
 import com.project.marprojectmodule.models.Product;
 
 import com.project.marprojectmodule.service.ProductService;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -14,7 +15,7 @@ public class ProductController {
 
     private ProductService productService;
 
-    public ProductController(ProductService productService) {
+    public ProductController(@Qualifier("SelfProductService") ProductService productService) {
         this.productService = productService;
     }
 

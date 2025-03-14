@@ -12,7 +12,7 @@ public interface ProductRepository extends CrudRepository<Product, Long> {
 
     Product findByTitle(String title);
 
-    Product findByDiscription(String discription);
+    Product findByDescription(String description);
 
 
 }

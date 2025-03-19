@@ -26,37 +26,39 @@ class MarProjectModuleApplicationTests {
 
     @Test
     void testQueries() {
-        List<Product> allProducts = productRepository.getProductByCategoryId(1L);
-
-        for (Product product : allProducts) {
-            System.out.println(product);
-        }
-    }
-
-    @Test
-    void testNativeQueries() {
-        List<Product> allProducts = productRepository.getProductByCategoryIdNativeQueries(1L);
-
-        for (Product product : allProducts) {
-            System.out.println(product);
-        }
-    }
-
-    @Test
-    void testProductProjection() {
+//        List<Product> allProducts = productRepository.getProductByCategoryId(1L);
+//
+//        for (Product product : allProducts) {
+//            System.out.println(product);
+//        }
         List<ProductProjection> productProjectionList = productRepository.getProductByCategoryIdUsingProjections(1L);
-        System.out.println(productProjectionList.get(0).getId());
+        System.out.println(productProjectionList.get(0).getTitle());
     }
+
+//    @Test
+//    void testNativeQueries() {
+//        List<Product> allProducts = productRepository.getProductByCategoryIdNativeQueries(1L);
+//
+//        for (Product product : allProducts) {
+//            System.out.println(product);
+//
+//        }
+//    }
+
+//    @Test
+//    void testProductProjection() {
+//
+//    }
 
     @Test
     void fetchTypesTest(){
-        Category cat = categoryRepository.findById(1L).get();
-        System.out.println(cat.getId());
-        System.out.println("We Are Done Here");
-
-        List<Product> currentProduct = cat.getProducts();
-        System.out.println(currentProduct.size());
-        System.out.println("We Got Products As Well");
+//        Category cat = categoryRepository.findById(1L).get();
+//        System.out.println(cat.getId());
+//        System.out.println("We Are Done Here");
+//
+//        List<Product> currentProduct = cat.getProducts();
+//        System.out.println(currentProduct.size());
+//        System.out.println("We Got Products As Well");
     }
 
 }

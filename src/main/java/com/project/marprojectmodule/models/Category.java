@@ -1,6 +1,7 @@
 package com.project.marprojectmodule.models;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.project.marprojectmodule.repository.ProductProjection;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -21,6 +22,7 @@ import java.util.List;
 public class Category extends BaseModel {
     private String title;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "category", fetch = FetchType.LAZY)
     private List<Product> products;
 

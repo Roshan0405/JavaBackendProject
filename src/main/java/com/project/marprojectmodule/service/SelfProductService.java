@@ -9,8 +9,13 @@ import com.project.marprojectmodule.models.Category;
 import com.project.marprojectmodule.models.Product;
 import com.project.marprojectmodule.repository.CategoryRepository;
 import com.project.marprojectmodule.repository.ProductRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+//import java.awt.print.Pageable;
 import java.util.List;
 import java.util.Optional;
 
@@ -35,10 +40,18 @@ public class SelfProductService implements ProductService {
         throw new ProductNotFoundException("Product not found in our database");
     }
 
+//    @Override
+//    public List<Product> getAllProducts() {
+//        List<Product> lp = (List<Product>) productRepository.findAll();
+//        return List.of();
+//    }
+
     @Override
-    public List<Product> getAllProducts() {
-        List<Product> lp = (List<Product>) productRepository.findAll();
-        return List.of();
+    public Page<Product> getAllProducts(int pageNumber, int pageSize, String fieldName) {
+        Page<Product> products = productRepository.findAll((Pageable) PageRequest.of(pageNumber, pageSize,
+                Sort.by(fieldName).ascending()));
+
+        return products;
     }
 
     @Override

@@ -1,9 +1,7 @@
 package com.project.marprojectmodule;
 
-import com.project.marprojectmodule.models.Category;
-import com.project.marprojectmodule.models.Product;
 import com.project.marprojectmodule.repository.CategoryRepository;
-import com.project.marprojectmodule.repository.ProductProjection;
+import com.project.marprojectmodule.repository.projections.ProductProjection;
 import com.project.marprojectmodule.repository.ProductRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -2,7 +2,6 @@ package com.project.marprojectmodule.models;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.project.marprojectmodule.repository.ProductProjection;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.OneToMany;
@@ -22,6 +21,9 @@ import java.util.List;
 public class Category extends BaseModel {
     private String title;
 
+    //Usually, cascade is applied on @OneToMany because:
+    //You usually want to delete products when a category is deleted.
+    // Read about cascading here : https://www.baeldung.com/jpa-cascade-types
     @JsonIgnore
     @OneToMany(mappedBy = "category", fetch = FetchType.LAZY)
     private List<Product> products;

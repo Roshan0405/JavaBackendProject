@@ -3,12 +3,15 @@ package com.project.marprojectmodule.dto;
 
 import com.project.marprojectmodule.models.Category;
 import com.project.marprojectmodule.models.Product;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter
 @Setter
-
+@AllArgsConstructor
+@NoArgsConstructor
 public class FakeStoreProductDto {
     private long id;
     private String title;

@@ -3,6 +3,7 @@ package com.project.marprojectmodule.controller;
 import com.project.marprojectmodule.dto.ErrorDto;
 import com.project.marprojectmodule.exceptions.ProductNotFoundException;
 import com.project.marprojectmodule.models.Product;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import com.project.marprojectmodule.service.ProductService;
 //import org.hibernate.query.Page;
@@ -17,6 +18,13 @@ import java.util.List;
 @RestController
 public class ProductController {
 
+    // CRUD apis around product
+    // For the product
+    // 1. to create a product
+    // 2. get a product
+    // 3. update a product
+    // 4. delete a product
+
     private ProductService productService;
     List<Product> products = new ArrayList<>();
 
@@ -24,6 +32,7 @@ public class ProductController {
         this.productService = productService;
     }
 
+    // This will help in creating the product
     //  @RequestMapping(value ="/products", method = RequestMethod.POST)
     @PostMapping("/products")   //    It same work as @RequestMapping
     public Product createProduct(@RequestBody Product product) throws ProductNotFoundException {
@@ -32,8 +41,10 @@ public class ProductController {
     return p;
     }
 
+    // This will help in creating the product
+    // @RequestMapping(value = "/products", method = RequestMethod.POST)
     @GetMapping("/products/{id}")
-    public ResponseEntity<Product> getProduct(@PathVariable("id") long id) throws ProductNotFoundException {
+    public ResponseEntity<Product> getProductById(@PathVariable("id") long id) throws ProductNotFoundException {
         System.out.println("Starting the api call");
         Product p = productService.getSingleProduct(id);
         System.out.println("Ending the api call");
@@ -61,7 +72,9 @@ public class ProductController {
 //        return response;
 //    }
 
-     @GetMapping("/products")
+
+    // pageSize, pageNumber, fieldName, sort Order
+    @GetMapping("/products")
     public Page<Product> getAllProducts(@RequestParam("pageNumber") int pageNumber, @RequestParam("pageSize")int pageSize, @RequestParam("fieldName")String fieldName, @RequestParam("searchQuery") String searchQuery) {
         return productService.getAllProducts(pageNumber, pageSize, fieldName);
     }

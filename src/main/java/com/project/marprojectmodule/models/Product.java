@@ -32,3 +32,8 @@ public class Product extends BaseModel {
                 '}';
     }
 }
+
+// Cardinality is M:1
+//1                 1
+//Product        Category
+//M        1

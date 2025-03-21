@@ -14,7 +14,9 @@ public class StripePaymentGatewayImplementation implements PaymentService {
 
     @Override
     public String makePayment(String orderId, long amount) throws StripeException {
-//        return "";
+
+        // 1. Create PriceCreateParam Object
+        // INR, amount, orderId
 
         Stripe.apiKey = "sk_test_51R45zoRPGxoJP9ViZkO8Wcb5Qji6BAYvsDleh0PZ36QJSlWkHoPqyGduxZlnTnx1duqhlkZMMou9RajtR06j4S2l00vd6l47Jq";
 
@@ -27,8 +29,6 @@ public class StripePaymentGatewayImplementation implements PaymentService {
         Price price = Price.create(params);
 
 //       Create the Payment Link
-
-//        Stripe.apiKey = "sk_test_tR3PYbcVNZZ796tH88S4VQ2u";
 
         PaymentLinkCreateParams linkparams = PaymentLinkCreateParams.builder()
                 .addLineItem(PaymentLinkCreateParams.LineItem.builder()

@@ -57,6 +57,9 @@ public class SelfProductService implements ProductService {
     @Override
     public Product createProduct(long id, String title, String description, double price, String image, String categoryTitle) {
 
+        // 1. Check is category is there in db
+        // 2. If not there, create it and use it while saving product
+        // 3. If there , use it in product directly
         Product p = new Product();
         Optional<Category> currentCat = categoryRepository.findByTitle(categoryTitle);
         if(currentCat.isEmpty()) {

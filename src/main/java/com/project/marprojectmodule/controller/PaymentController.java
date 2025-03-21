@@ -1,6 +1,6 @@
 package com.project.marprojectmodule.controller;
 
-import com.project.marprojectmodule.dto.PaymentRequestDto;
+import com.project.marprojectmodule.dto.PaymentRequestDto; // Adjust package if needed
 import com.project.marprojectmodule.service.PaymentService;
 import com.stripe.exception.StripeException;
 import org.springframework.http.HttpStatus;
@@ -13,11 +13,12 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class PaymentController {
 
-    private PaymentService paymentService;
+    private final PaymentService paymentService;
 
     public PaymentController(PaymentService paymentService) {
         this.paymentService = paymentService;
     }
+
 
 //    @PostMapping("/payments")
 //    public <PaymentRequestDto> ResponseEntity<String> createPaymentLink(@RequestBody PaymentRequestDto paymentRequestDto) throws StripeException {
@@ -30,12 +31,16 @@ public class PaymentController {
 
     @PostMapping("/payments")
     public ResponseEntity<String> createPaymentLink(@RequestBody PaymentRequestDto paymentRequestDto) throws StripeException {
-        System.out.println("Received Order ID: " + paymentRequestDto.getOrderId());
-        System.out.println("Received Amount: " + paymentRequestDto.getAmount());
+//        System.out.println("Received Order ID: " + paymentRequestDto.getOrderId());
+//        System.out.println("Received Amount: " + paymentRequestDto.getAmount());
 
         String paymentLink = paymentService.makePayment(paymentRequestDto.getOrderId(), paymentRequestDto.getAmount());
         return new ResponseEntity<>(paymentLink, HttpStatus.OK);
     }
 
+    @PostMapping("/webhook")
+    public void handleWebhook() {
+        System.out.println("Webhook revecied here");
+    }
 
 }

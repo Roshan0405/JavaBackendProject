@@ -1,6 +1,7 @@
 package com.project.marprojectmodule.repository;
 
 import com.project.marprojectmodule.models.Product;
+import com.project.marprojectmodule.repository.projections.ProductProjection;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.Query;

@@ -23,5 +23,4 @@ public class BaseModel {
     private Date updateAt;
     private boolean isDeleted;
 
-
 }

@@ -9,17 +9,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-
 @RestController
 public class PaymentController {
 
     private final PaymentService paymentService;
-
     public PaymentController(PaymentService paymentService) {
         this.paymentService = paymentService;
     }
-
-
 //    @PostMapping("/payments")
 //    public <PaymentRequestDto> ResponseEntity<String> createPaymentLink(@RequestBody PaymentRequestDto paymentRequestDto) throws StripeException {
 //        // It should get the order details from order service
@@ -28,12 +24,10 @@ public class PaymentController {
 //        return new ResponseEntity<>(paymentLink, HttpStatus.OK);
 //
 //    }
-
     @PostMapping("/payments")
     public ResponseEntity<String> createPaymentLink(@RequestBody PaymentRequestDto paymentRequestDto) throws StripeException {
 //        System.out.println("Received Order ID: " + paymentRequestDto.getOrderId());
 //        System.out.println("Received Amount: " + paymentRequestDto.getAmount());
-
         String paymentLink = paymentService.makePayment(paymentRequestDto.getOrderId(), paymentRequestDto.getAmount());
         return new ResponseEntity<>(paymentLink, HttpStatus.OK);
     }

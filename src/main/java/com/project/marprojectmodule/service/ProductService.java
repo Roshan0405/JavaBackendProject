@@ -16,4 +16,8 @@ public interface ProductService {
 
     Product createProduct(long id, String title, String description, double price, String image, String category);
 
+    Product updateProduct(long id, String title, String description, double price, String image, String category);
+
+    Product deleteProduct(long id) throws ProductNotFoundException;
+
 }

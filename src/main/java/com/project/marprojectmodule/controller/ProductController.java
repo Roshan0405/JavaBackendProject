@@ -54,9 +54,11 @@ public class ProductController {
         return response;
     }
 
-    public void updateProduct(Product product) {
-
-    }
+//    @PutMapping("/products/{id}")
+//    public Product updateProduct(@RequestBody Product product) throws ProductNotFoundException {
+//        Product p = productService.updateProduct(product.putId(), product.puttitle());
+//        return null;
+//    }
 
     public void deleteProduct(long id) {
 

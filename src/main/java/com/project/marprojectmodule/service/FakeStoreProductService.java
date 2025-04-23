@@ -70,5 +70,15 @@ public class FakeStoreProductService implements ProductService {
         return response.getProduct();
     }
 
+    @Override
+    public Product updateProduct(long id, String title, String description, double price, String image, String category) {
+        return null;
+    }
+
+    @Override
+    public Product deleteProduct(long id) throws ProductNotFoundException {
+        return null;
+    }
+
 
 }
